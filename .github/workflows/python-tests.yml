@@ -13,5 +13,7 @@ jobs:
           python-version: "3.10"
       - name: Install dependencies
         run: pip install pytest
-      - name: Run tests
-        run: pytest
+      - name: Run tests and create report
+        run: pytest --junitxml=pytest-report.xml
+      - name: Calculate final grade
+        run: python tests/score.py pytest-report.xml

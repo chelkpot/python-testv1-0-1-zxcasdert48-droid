@@ -1,10 +1,12 @@
+# tests/test_task2.py
+
 import pytest
 from unittest.mock import patch
 from io import StringIO
-import tasks.task2 as task2
+from tasks.task2 import solve  # Теперь импортируем solve() напрямую
 
 def test_task2_triangle_area(capsys):
-    with patch('sys.stdin', StringIO('10\n5\n')):
-        exec(open('tasks/task2.py').read())
+    with patch('builtins.input', side_effect=['10', '5']):
+        solve()
         captured = capsys.readouterr()
         assert "25.0" in captured.out
